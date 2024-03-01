@@ -31,4 +31,8 @@ public class EmployeeController {
     public List<Employee> getAllEmployee(){
         return employeeService.getAllEmployee();
     }
+
+    public String deleteEmployeeById(@PathVariable Long EmployeeId){
+        return employeeService.deleteEmployee(EmployeeId);
+    }
 }
