@@ -19,5 +19,5 @@ public class Attendance {
     @JoinColumn(name = "EmployeeId")
     private Employee Employee;
 
-    private String Date;
+    private Double days;
 }
