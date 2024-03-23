@@ -1,10 +1,13 @@
 package com.vmpkp.HRManagementSystem.Models;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -32,11 +35,16 @@ public class Employee {
 
 
     @ManyToOne
-    @JoinColumn(name = "Department_Id")
-    private Department Department_Id;
+    @JoinColumn(name = "department_id")
+    private Department department;
 
     @ManyToOne
-    @JoinColumn(name = "Position_Id")
-    private Position Position_Id;
+    @JoinColumn(name = "position_id")
+    private Position position;
+
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "Employee")
+    private List<Attendance> getAttendance;
 
 }

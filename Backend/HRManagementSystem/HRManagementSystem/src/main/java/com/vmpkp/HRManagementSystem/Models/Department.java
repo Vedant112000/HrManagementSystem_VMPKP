@@ -1,5 +1,6 @@
 package com.vmpkp.HRManagementSystem.Models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -15,11 +16,12 @@ public class Department {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long Department_Id;
+    private Long departmentId;
 
     private String DepartmentName;
 
-    @OneToMany(mappedBy = "Department_Id")
+    @JsonIgnore
+    @OneToMany(mappedBy = "department")
     private List<Employee> employees;
 
 }

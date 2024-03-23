@@ -21,6 +21,10 @@ public class Salary {
 
     private int SalaryAmount;
 
+    private int payable;
+
+    private int deduction;
+
     private int EffectiveDate;
 
 }

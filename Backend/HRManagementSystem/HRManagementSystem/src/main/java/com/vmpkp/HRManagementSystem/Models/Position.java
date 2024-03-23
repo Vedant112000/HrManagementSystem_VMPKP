@@ -1,5 +1,6 @@
 package com.vmpkp.HRManagementSystem.Models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -15,7 +16,7 @@ public class Position {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long Position_Id;
+    private Long positionId;
 
     private String PositionTitle;
 
@@ -23,7 +24,8 @@ public class Position {
 
     private String JobDescription;
 
-    @OneToMany(mappedBy = "Position_Id")
+    @JsonIgnore
+    @OneToMany(mappedBy = "position")
     private List<Employee> employees;
 
 

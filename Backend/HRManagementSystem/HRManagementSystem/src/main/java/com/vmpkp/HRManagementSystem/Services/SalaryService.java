@@ -1,5 +1,6 @@
 package com.vmpkp.HRManagementSystem.Services;
 
+import com.vmpkp.HRManagementSystem.Models.Attendance;
 import com.vmpkp.HRManagementSystem.Models.Salary;
 import com.vmpkp.HRManagementSystem.Repository.SalaryRepository;
 import org.springframework.stereotype.Service;
@@ -34,4 +35,13 @@ public class SalaryService {
 
         return "Deleted Successfully";
     }
+
+    //get day salary from its position
+
+
+
+    //calculate salary of employee one by one and store it into salary table.
+    //days * position.salary -> salary
+
+
 }
