@@ -20,7 +20,7 @@ public class Position {
 
     private String PositionTitle;
 
-    private int salary;
+    private Double salary;
 
     private String JobDescription;
 

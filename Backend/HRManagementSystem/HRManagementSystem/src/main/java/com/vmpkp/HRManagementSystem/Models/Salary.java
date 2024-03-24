@@ -5,6 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -15,16 +17,16 @@ public class Salary {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long SalaryId;
 
-    @ManyToOne
-    @JoinColumn(name = "EmployeeId")
-    private Employee Employee;
 
-    private int SalaryAmount;
+    @Column(name = "employee_id")
+    private Long employee_id;
+
+    private Double SalaryAmount;
 
     private int payable;
 
     private int deduction;
 
-    private int EffectiveDate;
+    private LocalDate EffectiveDate;
 
 }
