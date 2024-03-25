@@ -1,5 +1,6 @@
 package com.vmpkp.HRManagementSystem.Controllers;
 
+import com.vmpkp.HRManagementSystem.DTO.EmployeeDetailSearchDto;
 import com.vmpkp.HRManagementSystem.Models.Employee;
 import com.vmpkp.HRManagementSystem.Services.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,7 +38,7 @@ public class EmployeeController {
     }
 
     @GetMapping("/get/byName")
-    public List<Object[]> getEmployeeByName(@RequestParam String firstName){
+    public List<EmployeeDetailSearchDto> getEmployeeByName(@RequestParam String firstName){
         return employeeService.getEmployeeByName(firstName);
     }
 }

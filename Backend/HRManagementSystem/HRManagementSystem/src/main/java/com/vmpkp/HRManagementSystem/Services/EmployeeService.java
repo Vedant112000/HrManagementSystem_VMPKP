@@ -1,10 +1,12 @@
 package com.vmpkp.HRManagementSystem.Services;
 
+import com.vmpkp.HRManagementSystem.DTO.EmployeeDetailSearchDto;
 import com.vmpkp.HRManagementSystem.Models.Employee;
 import com.vmpkp.HRManagementSystem.Repository.EmployeeRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -38,8 +40,24 @@ public class EmployeeService {
 
     //get Employee By Name
 
-    public List<Object[]> getEmployeeByName(String firstName){
-            return employeeRepository.findByFirstName(firstName);
+    public List<EmployeeDetailSearchDto> getEmployeeByName(String firstName){
+
+        List<EmployeeDetailSearchDto> employeeDetailSearchDtoList = new ArrayList<>();
+        List<Employee> employees = employeeRepository.findByFirstName(firstName);
+
+        for(Employee employee : employees){
+            EmployeeDetailSearchDto employeeDetailSearchDto = new EmployeeDetailSearchDto();
+
+            employeeDetailSearchDto.setEmployeeId(employee.getEmployeeId());
+            employeeDetailSearchDto.setFirstName(employee.getFirstName());
+            employeeDetailSearchDto.setLastName(employee.getLastName());
+            employeeDetailSearchDto.setDepartmentName(employee.getDepartment().getDepartmentName());
+            employeeDetailSearchDto.setPositionTitle(employee.getPosition().getPositionTitle());
+
+            employeeDetailSearchDtoList.add(employeeDetailSearchDto);
+        }
+
+        return employeeDetailSearchDtoList;
     }
 
     //update employee profile

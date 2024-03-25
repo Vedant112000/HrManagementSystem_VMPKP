@@ -1,5 +1,6 @@
 package com.vmpkp.HRManagementSystem.Controllers;
 
+import com.vmpkp.HRManagementSystem.DTO.GetAllAttendanceDto;
 import com.vmpkp.HRManagementSystem.Models.Attendance;
 import com.vmpkp.HRManagementSystem.Models.Employee;
 import com.vmpkp.HRManagementSystem.Repository.AttendanceRepository;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -33,8 +35,21 @@ public class AttendanceController {
     }
 
     @GetMapping("/getAll")
-    public List<Attendance> getAllEmployeeAttendanceForMonth(){
-        return attendanceService.allEmployeesAttendanceForCurrentMonth();
+    public List<GetAllAttendanceDto> getAllEmployeeAttendanceForMonth(){
+        List<Attendance> attendanceList = attendanceService.allEmployeesAttendanceForCurrentMonth();
+        List<GetAllAttendanceDto> getAllAttendanceDtoList = new ArrayList<>();
+        for(Attendance attendance: attendanceList){
+            GetAllAttendanceDto getAllAttendanceDto = new GetAllAttendanceDto();
+
+            getAllAttendanceDto.setFirstName(attendance.getEmployee().getFirstName());
+            getAllAttendanceDto.setLastName(attendance.getEmployee().getLastName());
+            getAllAttendanceDto.setDate(attendance.getDate());
+            getAllAttendanceDto.setDays(attendance.getDays());
+
+            getAllAttendanceDtoList.add(getAllAttendanceDto);
+        }
+
+        return getAllAttendanceDtoList;
     }
 
 }

@@ -12,6 +12,6 @@ public interface EmployeeRepository extends JpaRepository<Employee, Long> {
 
 //   find by Employee Name
 
-    @Query("SELECT e.FirstName, e.LastName, e.department.DepartmentName, e.position.PositionTitle, e.EmployeeId FROM Employee e WHERE e.FirstName = :firstName")
-    List<Object[]> findByFirstName(String firstName);
+    @Query("SELECT e FROM Employee e WHERE e.FirstName = :firstName")
+    List<Employee> findByFirstName(String firstName);
 }
