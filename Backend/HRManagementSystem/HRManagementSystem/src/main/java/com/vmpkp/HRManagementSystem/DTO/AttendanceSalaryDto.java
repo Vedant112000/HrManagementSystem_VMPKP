@@ -12,4 +12,5 @@ public class AttendanceSalaryDto {
     private String firstName;
     private String lastName;
     private Double salary;
+    private String email;
 }

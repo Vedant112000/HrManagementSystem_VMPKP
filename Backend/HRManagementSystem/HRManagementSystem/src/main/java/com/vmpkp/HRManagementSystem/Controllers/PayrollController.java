@@ -3,10 +3,7 @@ package com.vmpkp.HRManagementSystem.Controllers;
 import com.vmpkp.HRManagementSystem.DTO.PaySlipDto;
 import com.vmpkp.HRManagementSystem.Services.PayrollService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -21,6 +18,13 @@ public class PayrollController {
     @GetMapping("/get/slips")
     public List<PaySlipDto> sendPaySlipDetails(){
         return payrollService.sendPaySlipData();
+    }
+
+    @PostMapping("/send-emails")
+    public String sendEmails(){
+        payrollService.generateAndSendEmail();
+
+        return "Emails Sent Successfully";
     }
 
 }

@@ -7,6 +7,7 @@ import java.time.LocalDate;
 @Data
 public class PaySlipDto {
 
+    private Long employeeId;
     private String firstName;
     private String lastName;
     private LocalDate EffectiveDate;
@@ -14,5 +15,6 @@ public class PaySlipDto {
     private int deduction;
     private int payable;
     private Double days;
+    private String email;
 
 }

@@ -17,9 +17,12 @@ public class PayrollService {
     private AttendanceService attendanceService;
     private SalaryService salaryService;
 
-    public PayrollService(AttendanceService attendanceService, SalaryService salaryService) {
+    private SendEmailService sendEmailService;
+
+    public PayrollService(AttendanceService attendanceService, SalaryService salaryService, SendEmailService sendEmailService) {
         this.attendanceService = attendanceService;
         this.salaryService = salaryService;
+        this.sendEmailService = sendEmailService;
     }
 
 
@@ -36,6 +39,7 @@ public class PayrollService {
             attendanceSalaryDto.setDate(attendance.getDate());
             attendanceSalaryDto.setDays(attendance.getDays());
             attendanceSalaryDto.setSalary(attendance.getEmployee().getPosition().getSalary());
+            attendanceSalaryDto.setEmail(attendance.getEmployee().getEmail());
             attendanceSalaryDt.add(attendanceSalaryDto);
         }
 
@@ -68,10 +72,11 @@ public class PayrollService {
             paySlipDto.setLastName(attendanceSalaryDto.getLastName());
             paySlipDto.setEffectiveDate(attendanceSalaryDto.getDate());
             paySlipDto.setDays(attendanceSalaryDto.getDays());
-
+            paySlipDto.setEmployeeId(attendanceSalaryDto.getEmployee_id());
             paySlipDto.setSalaryAmount(allSalary.get(i).getSalaryAmount());
             paySlipDto.setDeduction(allSalary.get(i).getDeduction());
             paySlipDto.setPayable(allSalary.get(i).getPayable());
+            paySlipDto.setEmail(attendanceSalaryDto.getEmail());
 
             i += 1;
 
@@ -82,7 +87,8 @@ public class PayrollService {
         return paySlipDtoList;
     }
 
-
-
-
+    public void generateAndSendEmail(){
+        List<PaySlipDto> paySlipDtoList = sendPaySlipData();
+        sendEmailService.generateAndSendPayslipEmails(paySlipDtoList);
+    }
 }

@@ -20,10 +20,10 @@ public class EmployeeService {
 
     //add Employee
 
-    public String addEmployee(Employee employee){
-        employeeRepository.save(employee);
+    public Employee addEmployee(Employee employee){
+        Employee empDetails = employeeRepository.save(employee);
 
-        return "Added Employee Successfully";
+        return empDetails;
     }
 
     //get Employee
